@@ -40,10 +40,19 @@ public class MovieRepository {
     //   3.  Pair an existing movie and director: PUT /movies/add-movie-director-pair
     public String addMovieDirectorPair(String movieName, String directorName){
 
-        String key = directorName;
-        List<String> list = directorMovieDb.get(key);
-        list.add(movieName);
-        directorMovieDb.put(key, list);
+        if(directorMovieDb.containsKey(directorName)){
+            directorMovieDb.get(directorName).add(movieName);
+        }
+        else{
+            List<String> list = new ArrayList<>();
+            list.add(movieName);
+            directorMovieDb.put(directorName,list);
+        }
+
+//        String key = directorName;
+//        List<String> list = directorMovieDb.get(key);
+//        list.add(movieName);
+//        directorMovieDb.put(key, list);
 
         return "director and movie pair added successfully";
     }
