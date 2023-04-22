@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -50,13 +51,15 @@ public class MovieRepository {
     //   Get MovieList from movieDb.
     public List<Movie> getMovieList(){
 
-        return movieDb.values().stream().toList();
+        List<Movie> movies = new ArrayList<Movie>(movieDb.values());
+        return movies;
     }
 
 //    Get DirectorList from directorDb
     public List<Director> getDirectorList(){
 
-        return directorDb.values().stream().toList();
+        List<Director> directors = new ArrayList<Director>(directorDb.values());
+        return directors;
     }
 
 //    Get DirectorMovieList from directorMovieDb
